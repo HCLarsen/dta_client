@@ -20,7 +20,19 @@ Crystal Client for Ruby on Rails apps using [devise_token_auth](https://github.c
 require "dta_client"
 ```
 
-TODO: Write usage instructions here
+Start by initializing an instant of DTAClient with the base path for the Devise controller of the target server, and using it to sign in with your credentials.
+
+**Note**: 'base path' refers to the common parts of the path to the Devise routes, including namespaces. For instance, if the sign in path is `www.rails-app.ca/api/v1/auth/sign_in`, then the base path would be `www.rails-app.ca/api/v1`
+
+```crystal
+client = DTAClient.new("localhost:3000/api/v1")
+
+
+client.sign_in(email: "myemail@example.org", password: "FakePassword123")
+client.auth_params  #=> {}
+```
+
+The sign in method takes care of signing in, and storing the authentication token params needed to access other routes of this app, which can be accessed through the `#auth_params` method.
 
 ## Development
 
