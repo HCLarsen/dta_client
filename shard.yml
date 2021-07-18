@@ -8,6 +8,8 @@ development_dependencies:
   minitest:
     github: ysbaddaden/minitest.cr
     version: "1.0.1"
+  webmock:
+    github: manastech/webmock.cr
 
 crystal: 1.0.0
 

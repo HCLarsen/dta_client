@@ -26,13 +26,14 @@ Start by initializing an instant of DTAClient with the base path for the Devise 
 
 ```crystal
 client = DTAClient.new("localhost:3000/api/v1")
-
-
-client.sign_in(email: "myemail@example.org", password: "FakePassword123")
-client.auth_params  #=> {}
 ```
 
 The sign in method takes care of signing in, and storing the authentication token params needed to access other routes of this app, which can be accessed through the `#auth_params` method.
+
+```crystal
+client.sign_in(email: "myemail@example.org", password: "FakePassword123")
+client.auth_params  #=> {"access-token" => "08Na79ohCtHjDl2MtHEEAQ", "client" => "9eKqFG5UY9f6yLh7TVc8rA", "expiry" => "1627764337", "uid" => "corps@example.com"}
+```
 
 ## Development
 
