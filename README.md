@@ -22,17 +22,17 @@ require "dta_client"
 
 Start by initializing an instant of DTAClient with the base path for the Devise controller of the target server, and using it to sign in with your credentials.
 
-**Note**: 'base path' refers to the common parts of the path to the Devise routes, including namespaces. For instance, if the sign in path is `www.rails-app.ca/api/v1/auth/sign_in`, then the base path would be `www.rails-app.ca/api/v1`
+**Note**: 'base path' refers to the common parts of the path to the Devise routes, including namespaces. For instance, if the sign in path is `www.rails-app.ca/api/v1/auth/sign_in`, then the base path would be `www.rails-app.ca/api/v1/auth`
 
 ```crystal
-client = DTAClient.new("localhost:3000/api/v1")
+client = DTAClient.new("localhost:3000/api/v1/auth")
 ```
 
 The sign in method takes care of signing in, and storing the authentication token params needed to access other routes of this app, which can be accessed through the `#auth_params` method.
 
 ```crystal
 client.sign_in(email: "myemail@example.org", password: "FakePassword123")
-client.auth_params  #=> {"access-token" => "08Na79ohCtHjDl2MtHEEAQ", "client" => "9eKqFG5UY9f6yLh7TVc8rA", "expiry" => "1627764337", "uid" => "corps@example.com"}
+client.auth_params  #=> HTTP:Headers{"access-token" => "08Na79ohCtHjDl2MtHEEAQ", "client" => "9eKqFG5UY9f6yLh7TVc8rA", "expiry" => "1627764337", "uid" => "corps@example.com"}
 ```
 
 ## Development
